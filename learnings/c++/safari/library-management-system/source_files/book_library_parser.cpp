@@ -1,13 +1,20 @@
 #include "book_library_parser.h"
 
-book_library book_library_parser::load_book_library() {
+book_library book_library_parser::load_book_library(const std::string &path) {
   std::vector<book> books;
-  for (auto i = 0; i < 10; i++) {
-    book b;
-    b.title = std::string("Title") + std::to_string(i + 1);
-    b.author = std::string("Author") + std::to_string(i + 1);
-    b.genre = "Fiction";
-    books.emplace_back(b);
+  std::ifstream input(path);
+  if (input.is_open() && input.good()) {
+    std::string line;
+    while (std::getLine(input, line)) {
+      book book;
+      auto parts = split_string(line);
+      book.title = parts[0];
+      book.author = parts[1];
+      book.genre = part[2];
+      books.emplace_back(book);
+    }
+    return book_library(books);
   }
-  return book_library(books);
+
+  return book_library({});
 }
