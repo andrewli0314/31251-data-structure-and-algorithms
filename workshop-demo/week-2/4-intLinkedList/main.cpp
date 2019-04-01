@@ -18,4 +18,13 @@ int main() {
   }
 
   std::cout << std::endl;
+
+  /*
+  intLinkedList * l = new intLinkedList();
+  for (int i = 0; i < 10; i++){
+          l->append(i);
+  }
+
+  std::cout <<"Head "<< l->getHead() << std::endl;
+  */
 }

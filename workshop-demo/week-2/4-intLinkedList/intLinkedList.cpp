@@ -1,8 +1,10 @@
 #include "intLinkedList.h"
+#include <iostream>
 
 intLinkedList::intNode::intNode() {
-  //   intNode::data = 0;
-  //   intNode::next = nullptr;
+  intNode::data = 0;
+intNode:
+  next = nullptr;
 }
 
 intLinkedList::intNode::intNode(intNode* n, int d) {
@@ -14,60 +16,50 @@ intLinkedList::intNode::~intNode() {
   // You don't have to do anything for this one
 }
 
-int intLinkedList::intNode::getData() { return intNode::data; }
+int intLinkedList::intNode::getData() { return data; }
 
-intLinkedList::intNode* intLinkedList::intNode::getNext() {
-  return intNode::next;
-}
+intLinkedList::intNode* intLinkedList::intNode::getNext() { return next; }
 
-void intLinkedList::intNode::setNext(intNode* n) { intNode::next = n; }
+void intLinkedList::intNode::setNext(intNode* n) { this->next = n; }
 
 intLinkedList::intLinkedList() {
-  //   head = nullptr;
-  //   length = 0;
+  head = nullptr;
+  length = 0;
 }
 
 intLinkedList::~intLinkedList() {}
 
-bool intLinkedList::isEmpty() {
-  // 	two ways 1. lenth is 0
-  return (length == 0);
-}
+bool intLinkedList::isEmpty() { return (length == 0); }
 
 void intLinkedList::prepend(int c) {
   intNode* node = new intNode(head, c);
-  // intLinkedList list = new intLinkedList();
   head = node;
   length++;
 }
 
 void intLinkedList::append(int c) {
-  intNode* mainHead = head;
-  intNode* node = new intNode(nullptr, c);
+  if (head == nullptr) {
+    intNode* newNode = new intNode(nullptr, c);
+    head = newNode;
+    length++;
+  } else {
+    intNode* tempHead = head;
+    intNode* newNode = new intNode(nullptr, c);
 
-  for (int i = 0; i < length; i++) {
-    if (head->getNext() == nullptr) {
-      head->setNext(node);
+    for (int i = 0; i < length - 1; i++) {
+      tempHead = tempHead->getNext();
     }
-    head = head->getNext();
+    tempHead->setNext(newNode);
+    this->length++;
   }
-  head = mainHead;
-  length++;
 }
 
-int intLinkedList::getHead() { return head->getData(); }
+int intLinkedList::getHead() { return this->head->getData(); }
 
 intLinkedList* intLinkedList::tail() {
-  //   intNode* secondNode = head->getNext();
-  //   intNode* node = new intNode(secondNode, secondNode->getData());
-  //   intLinkedList* tail = new intLinkedList();
-  //   tail->length = length - 1;
-  //   for (int i = 0; i < length - 1; i++) {
-  // 	  tail->append()
-  // }
+  intLinkedList* tail = new intLinkedList();
 
-  // tail->head = node;
-  // return tail;
-  head = head->getNext();
-  return this;
-}
+  tail->head = head->getNext();
+  tail->length = this->length - 1;
+  return tail;
+};

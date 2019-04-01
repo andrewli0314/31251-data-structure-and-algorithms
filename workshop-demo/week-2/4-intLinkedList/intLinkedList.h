@@ -10,40 +10,32 @@ using std::size_t;
 using std::string;
 
 class intLinkedList : public intList {
-
  private:
-
-  class intNode{
-
-  private:
-
-    intNode * next;
+  class intNode {
+   private:
+    intNode *next;
     int data;
 
-  public:
-
+   public:
     intNode();
-    intNode(intNode * next, int data);
-    ~intNode(); // make sure we clean up everything in the heap
+    intNode(intNode *next, int data);
+    ~intNode();  // make sure we clean up everything in the heap
     int getData();
-    intNode * getNext();
+    intNode *getNext();
     void setNext(intNode *);
-
   };
 
-  intNode * head;
-  size_t length; // unsigned 32 bits integer
+  intNode *head;
+  size_t length;  // unsigned 32 bits integer
 
  public:
-
   intLinkedList();
   ~intLinkedList();
   bool isEmpty();
   void prepend(int c);
   void append(int c);
   int getHead();
-  intLinkedList * tail();
-  
+  intLinkedList *tail();
 };
 
 #endif
