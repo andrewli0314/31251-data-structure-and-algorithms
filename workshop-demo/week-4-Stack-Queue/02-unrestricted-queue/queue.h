@@ -38,11 +38,11 @@ class queue {
       for (int i = 0; i < size; i++) {
         newArray[i] = data[front + i];
       }
-      size++;
       newArray[size] = t;
       data = &newArray;
+      size++;
     } else {
-      data[front + size] = t;
+      data[(front + size) % capacity] = t;
       size++;
     }
   }  // add something to the back of the queue
