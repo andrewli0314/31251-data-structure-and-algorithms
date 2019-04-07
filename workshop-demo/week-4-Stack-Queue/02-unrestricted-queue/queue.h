@@ -1,3 +1,5 @@
+#include <iostream>
+
 template <typename T>
 class queue {
  private:
@@ -32,15 +34,22 @@ class queue {
   ~queue() { delete[] data; }
 
   void offer(T t) {
-    if (size == capacity) {
-      T* newArray = new T[capacity * 2];
+    if (size > capacity) {
+      T* newArray = new T[capacity * 3];
 
-      for (int i = 0; i < size; i++) {
+      for (int i = 0; i < size; ++i) {
+        std::cout << "data[front + i] :  " << data[front + i] << std::endl;
         newArray[i] = data[front + i];
+        std::cout << "newArray[i]:  " << newArray[i] << std::endl;
       }
-      newArray[size] = t;
-      data = &newArray;
+
+      front = 0;
+      std::cout << newArray[size] << std::endl;
+
       size++;
+      newArray[size] = t;
+      delete[] data;
+      data = newArray;
     } else {
       data[(front + size) % capacity] = t;
       size++;
@@ -50,11 +59,20 @@ class queue {
   T poll() {
     T polledElement = data[front];
     front++;
+    size--;
     return polledElement;
-
   }  // remove something from the front of the queue
 
   bool empty() { return size == 0; }  // is the queue empty?
+
+  void toString() {
+    for (int i = 0; i < size; i++) {
+      std::cout << "Data: " << data[front + i] << std::endl;
+      std::cout << "Size: " << size << std::endl;
+    }
+
+    // std::cout<<"Data : "<< data[3]<< " At 3"<<std::endl;
+  }
 
   // Notes
 

@@ -12,6 +12,22 @@ int main() {
     q.offer(i);
   }
 
+  /*
+  q.offer(4);
+  q.offer(4444);
+  q.poll();
+  std::cout<<"Polled item: "<<q.poll()<<std::endl;
+  
+
+  
+
+
+
+  
+
+
+
+*/
   while (!q.empty()) {
     std::cout << q.poll() << std::endl;
   }
@@ -21,6 +37,7 @@ int main() {
   for (int i = 0; i < 2 * capacity; i++) {
     q.offer(i);
   }
+  q.toString();
 
   while (!q.empty()) {
     std::cout << q.poll() << std::endl;
