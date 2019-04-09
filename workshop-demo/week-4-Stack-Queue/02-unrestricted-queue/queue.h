@@ -34,24 +34,20 @@ class queue {
   ~queue() { delete[] data; }
 
   void offer(T t) {
-    if (size > capacity) {
+    if (front + size == capacity) {
       T* newArray = new T[capacity * 3];
-
-      for (int i = 0; i < size; ++i) {
-        std::cout << "data[front + i] :  " << data[front + i] << std::endl;
+      for (int i = 0; i < size; i++) {
         newArray[i] = data[front + i];
-        std::cout << "newArray[i]:  " << newArray[i] << std::endl;
       }
-
       front = 0;
-      std::cout << newArray[size] << std::endl;
-
+      newArray[(front + size) % capacity] = t;
       size++;
-      newArray[size] = t;
       delete[] data;
       data = newArray;
+      this->capacity = capacity * 3;
     } else {
       data[(front + size) % capacity] = t;
+
       size++;
     }
   }  // add something to the back of the queue
@@ -70,9 +66,10 @@ class queue {
       std::cout << "Data: " << data[front + i] << std::endl;
       std::cout << "Size: " << size << std::endl;
     }
-
     // std::cout<<"Data : "<< data[3]<< " At 3"<<std::endl;
   }
+
+  int getSize() { return size; }
 
   // Notes
 
