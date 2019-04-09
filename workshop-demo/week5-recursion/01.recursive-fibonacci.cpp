@@ -8,8 +8,9 @@ int fib_rec(int n) {
   int a = 1;
   int b = 1;
   int x = 0;
+  
 
-  for(int i = 0; i <10; i++){
+  for(int i = 0; i <n; i++){
           if(i == 0) {
                   x = 1;
                   std::cout<<x<<", ";
@@ -25,7 +26,9 @@ int fib_rec(int n) {
   b = x;
   }
   */
-  return 0;
+  if (n == 0) return 0;
+  if (n == 1) return 1;
+  return fib_rec(n - 1) + fib_rec(n - 2);
 }
 
 int main() {
