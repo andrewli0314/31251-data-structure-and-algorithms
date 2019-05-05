@@ -3,18 +3,24 @@
 graph::graph(const size_t& size) {
   this->size = size;
 
-  // we need to resize the vector
-  adjacency_matrix.resize(this->size);
-  // BUt above code will not resizze the inner vecctor of
-  // std::vector<std::vector<bool> > so we need to loop thru each and resize
-  // those
-  for (int i = 0; i < this->size; i++) {
-    adjacency_matrix[i].resize(this->size);
-    // also set those inner vector's value to false
-    for (int j = 0; j < this->size; j++) {
-      adjacency_matrix[i][j] = false;
-    }
-  }
+  // // we need to resize the vector
+  // adjacency_matrix.resize(this->size);
+
+  // // BUt above code will not resizze the inner vecctor of
+  // // std::vector<std::vector<bool> > so we need to loop thru each and resize
+  // // those
+
+  // for (int i = 0; i < this->size; i++) {
+  //   adjacency_matrix[i].resize(this->size);
+  //   // also set those inner vector's value to false
+  //   for (int j = 0; j < this->size; j++) {
+  //     adjacency_matrix[i][j] = false;
+  //   }
+  // }
+
+  // Simpler code for above looping and resizing
+  adjacency_matrix = std::vector<std::vector<bool> >(
+      this->size, std::vector<bool>(this->size, false));
 }
 
 graph::~graph() {}

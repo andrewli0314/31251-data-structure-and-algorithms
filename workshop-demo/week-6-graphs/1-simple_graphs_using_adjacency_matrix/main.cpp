@@ -3,7 +3,6 @@
 #include "graph.h"
 
 int main() {
-  /*
   std::cout << std::boolalpha;
 
   graph g(4);
@@ -36,9 +35,4 @@ int main() {
             << std::endl;
   std::cout << "Is vertex 1 still adjacent to vertex 2? " << g.is_adjacent(1, 2)
             << std::endl;
-
-            */
-
-  graph g(4);
-  g.to_string(4);
 }
